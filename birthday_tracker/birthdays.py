@@ -1,5 +1,7 @@
 import os
 
+import pandas as pd
+
 
 def get_default_filepath() -> str:
     return os.path.join(os.getenv('HOME'), '.birthday-tracker', 'birthdays.csv')

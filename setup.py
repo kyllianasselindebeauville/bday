@@ -8,5 +8,8 @@ setup(
     url='https://github.com/kyllianasselindebeauville/birthday-tracker',
     packages=['birthday_tracker'],
     license='MIT',
+    install_requires=[
+        'pandas>=1.5.1',
+    ],
     python_requires='>=3.7',
 )
