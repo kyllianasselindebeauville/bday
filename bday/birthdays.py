@@ -4,14 +4,14 @@ import pandas as pd
 
 
 def _get_default_filepath() -> str:
-    return os.path.join(os.getenv('HOME'), '.birthday-tracker', 'birthdays.csv')
+    return os.path.join(os.getenv('HOME'), '.bday', 'birthdays.csv')
 
 
 def _get_filepath(file: str = None) -> str:
     if file is None:
         return _get_default_filepath()
 
-    return os.path.join(os.getenv('HOME'), '.birthday-tracker', file)
+    return os.path.join(os.getenv('HOME'), '.bday', file)
 
 
 def get(file: str = None) -> pd.DataFrame:
