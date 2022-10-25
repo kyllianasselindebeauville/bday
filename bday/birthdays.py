@@ -33,6 +33,9 @@ def save(df: pd.DataFrame, file: str = None) -> None:
     filepath = _get_filepath(file)
     directory, file = os.path.split(filepath)
 
+    df.dropna(inplace=True)
+    df.drop_duplicates(inplace=True)
+
     os.makedirs(directory, exist_ok=True)
     df.to_csv(filepath, index_label='ID')
 
