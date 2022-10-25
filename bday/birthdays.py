@@ -35,3 +35,12 @@ def save(df: pd.DataFrame, file: str = None) -> None:
 
     os.makedirs(directory, exist_ok=True)
     df.to_csv(filepath, index_label='ID')
+
+
+def add(df: pd.DataFrame, name: str, birthdate: str) -> pd.DataFrame:
+    to_add = pd.DataFrame({
+        'Name': [name],
+        'Birthdate': [pd.to_datetime(birthdate, dayfirst=True)]
+    })
+
+    return pd.concat([df, to_add], ignore_index=True)
