@@ -43,7 +43,9 @@ def save(df: pd.DataFrame, file: str = None) -> None:
 def add(df: pd.DataFrame, name: str, birthdate: str) -> pd.DataFrame:
     to_add = pd.DataFrame({
         'Name': [name],
-        'Birthdate': [pd.to_datetime(birthdate, dayfirst=True)]
+        'Birthdate': [pd.to_datetime(birthdate,
+                                     errors='coerce',
+                                     dayfirst=True)]
     })
 
     return pd.concat([df, to_add], ignore_index=True)
