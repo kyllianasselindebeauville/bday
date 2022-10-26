@@ -22,7 +22,7 @@ def get(file: str = None) -> pd.DataFrame:
     filepath = _get_filepath(file)
 
     if os.path.exists(filepath):
-        df = pd.read_csv(filepath, index_col='ID')
+        df = pd.read_csv(filepath, index_col='ID', parse_dates=['Birthdate'])
     else:
         df = pd.DataFrame(columns=['Name', 'Birthdate'])
 
