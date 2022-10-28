@@ -49,3 +49,7 @@ def add(df: pd.DataFrame, name: str, birthdate: str) -> pd.DataFrame:
     })
 
     return pd.concat([df, to_add], ignore_index=True)
+
+
+def remove(df: pd.DataFrame, id: int) -> pd.DataFrame:
+    return df.drop(index=id, errors='ignore')
