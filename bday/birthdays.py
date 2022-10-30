@@ -36,6 +36,7 @@ def get(file: str = None) -> pd.DataFrame:
         df = pd.DataFrame(columns=['Name', 'Birthdate'])
 
     df['Birthday'] = pd.to_datetime(df['Birthdate'].apply(_next_birthday))
+    df['Countdown'] = df['Birthday'] - pd.to_datetime(date.today())
 
     return df
 
