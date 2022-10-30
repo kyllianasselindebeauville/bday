@@ -65,3 +65,12 @@ def add(df: pd.DataFrame, name: str, birthdate: str) -> pd.DataFrame:
 
 def remove(df: pd.DataFrame, id: int) -> pd.DataFrame:
     return df.drop(index=id, errors='ignore')
+
+
+def order(df: pd.DataFrame, how: str = 'chronologically') -> pd.DataFrame:
+    if 'alphabetically'.startswith(how):
+        return df.sort_values(['Name', 'Countdown'])
+    elif 'chronologically'.startswith(how):
+        return df.sort_values(['Countdown', 'Name'])
+    else:
+        return df
