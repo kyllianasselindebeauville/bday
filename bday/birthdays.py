@@ -1,3 +1,4 @@
+from datetime import date
 import os
 
 import pandas as pd
@@ -16,6 +17,14 @@ def _get_filepath(file: str = None) -> str:
         return _get_default_filepath()
 
     return os.path.join(_get_default_directory(), file)
+
+
+def _next_birthday(birthday: pd._libs.tslibs.timestamps.Timestamp) -> date:
+    today = date.today()
+    birthday_of_the_year = date(today.year, birthday.month, birthday.day)
+    next_birthday_year = today.year + int(birthday_of_the_year < today)
+
+    return date(next_birthday_year, birthday.month, birthday.day)
 
 
 def get(file: str = None) -> pd.DataFrame:
