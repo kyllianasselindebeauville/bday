@@ -49,7 +49,7 @@ def save(df: pd.DataFrame, file: str = None) -> None:
     df.drop_duplicates(subset=['Name', 'Birthdate'], inplace=True)
 
     os.makedirs(directory, exist_ok=True)
-    df.to_csv(filepath, index_label='ID')
+    df.to_csv(filepath, columns=['Name', 'Birthdate'], index_label='ID')
 
 
 def add(df: pd.DataFrame, name: str, birthdate: str) -> pd.DataFrame:
