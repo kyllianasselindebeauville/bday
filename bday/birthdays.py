@@ -35,6 +35,8 @@ def get(file: str = None) -> pd.DataFrame:
     else:
         df = pd.DataFrame(columns=['Name', 'Birthdate'])
 
+    df['Birthday'] = pd.to_datetime(df['Birthdate'].apply(_next_birthday))
+
     return df
 
 
