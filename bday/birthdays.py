@@ -2,6 +2,7 @@ from datetime import date
 import os
 
 import pandas as pd
+from prettytable import PrettyTable, SINGLE_BORDER
 
 
 def _get_default_directory() -> str:
@@ -74,3 +75,24 @@ def order(df: pd.DataFrame, how: str = 'chronologically') -> pd.DataFrame:
         return df.sort_values(['Countdown', 'Name'])
     else:
         return df
+
+
+def list_(df: pd.DataFrame, how: str = 'chronologically') -> None:
+    df = order(df, how)
+    df['Birthdate'] = df['Birthdate'].apply(lambda x: x.strftime('%d/%m/%Y'))
+    df['Countdown'] = df['Countdown'].apply(lambda x: f'{x.days} days')
+
+    x = PrettyTable()
+    x.set_style(SINGLE_BORDER)
+
+    x.add_column('ID', df.index.to_list())
+    x.add_column('Name', df['Name'].to_list())
+    x.add_column('Birthdate', df['Birthdate'].to_list())
+    x.add_column('Countdown', df['Countdown'].to_list())
+
+    x.align['ID'] = 'r'
+    x.align['Name'] = 'l'
+    x.align['Birthdate'] = 'l'
+    x.align['Countdown'] = 'r'
+
+    print(x)
