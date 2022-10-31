@@ -10,6 +10,7 @@ setup(
     license='MIT',
     install_requires=[
         'pandas>=1.5.1',
+        'prettytable>=3.5.0',
     ],
     python_requires='>=3.7',
 )
