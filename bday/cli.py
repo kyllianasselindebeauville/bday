@@ -1,9 +1,14 @@
 import argparse
 import inspect
 
+from bday import birthdays
+
 
 def add(args):
     print(f'{inspect.stack()[0][3]} <- {args}')
+    df = birthdays.get()
+    df = birthdays.add(df, name=args.name, birthdate=args.date)
+    birthdays.save(df)
 
 
 def rm(args):
