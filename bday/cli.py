@@ -35,7 +35,6 @@ def parse_args():
 
     subparsers = parser.add_subparsers(title='commands')
 
-    # Default function
     parser.set_defaults(func=today)
 
     parser_add = subparsers.add_parser('add', help='add a birthday')
@@ -43,13 +42,20 @@ def parse_args():
     parser_add.add_argument('date', type=str, help='date of birth (dd-mm-yyyy)')
     parser_add.set_defaults(func=add)
 
-    # Parser for the rm command
     parser_rm = subparsers.add_parser('rm', help='remove a birthday')
     parser_rm.add_argument('id', type=int, help='id to remove')
     parser_rm.set_defaults(func=rm)
 
-    # Parser for the ls command
-    parser_ls = subparsers.add_parser('ls')
+    parser_ls = subparsers.add_parser('ls', help='list birthdays')
+    parser_ls.add_argument('-a', '--alphabetically',
+                           action='store_const', const='alphabetically',
+                           default='chronologically',
+                           help='list alphabetically',
+                           dest='order')
+    parser_ls.add_argument('-c', '--chronologically',
+                           action='store_const', const='chronologically',
+                           help='list chronologically',
+                           dest='order')
     parser_ls.set_defaults(func=ls)
 
     args = parser.parse_args()
