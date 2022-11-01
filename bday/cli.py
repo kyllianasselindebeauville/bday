@@ -13,6 +13,9 @@ def add(args):
 
 def rm(args):
     print(f'{inspect.stack()[0][3]} <- {args}')
+    df = birthdays.get()
+    df = birthdays.remove(df, id=args.id)
+    birthdays.save(df)
 
 
 def ls(args):
