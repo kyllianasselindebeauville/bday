@@ -38,7 +38,8 @@ def parse_args():
     parser_add.set_defaults(func=add)
 
     # Parser for the rm command
-    parser_rm = subparsers.add_parser('rm')
+    parser_rm = subparsers.add_parser('rm', help='remove a birthday')
+    parser_rm.add_argument('id', type=int, help='id to remove')
     parser_rm.set_defaults(func=rm)
 
     # Parser for the ls command
