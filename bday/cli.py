@@ -27,8 +27,9 @@ def parse_args():
     # Default function
     parser.set_defaults(func=today)
 
-    # Parser for the add command
-    parser_add = subparsers.add_parser('add')
+    parser_add = subparsers.add_parser('add', help='add a birthday')
+    parser_add.add_argument('name', type=str, help='name of the person')
+    parser_add.add_argument('date', type=str, help='date of birth (dd-mm-yyyy)')
     parser_add.set_defaults(func=add)
 
     # Parser for the rm command
