@@ -2,15 +2,19 @@ import argparse
 import inspect
 
 
-def spam(args):
+def add(args):
     print(f'{inspect.stack()[0][3]} <- {args}')
 
 
-def ham(args):
+def rm(args):
     print(f'{inspect.stack()[0][3]} <- {args}')
 
 
-def eggs(args):
+def ls(args):
+    print(f'{inspect.stack()[0][3]} <- {args}')
+
+
+def today(args):
     print(f'{inspect.stack()[0][3]} <- {args}')
 
 
@@ -21,19 +25,19 @@ def parse_args():
     subparsers = parser.add_subparsers(title='commands')
 
     # Default function
-    parser.set_defaults(func=spam)
+    parser.set_defaults(func=today)
 
-    # Parser for the spam command
-    parser_spam = subparsers.add_parser('spam')
-    parser_spam.set_defaults(func=spam)
+    # Parser for the add command
+    parser_add = subparsers.add_parser('add')
+    parser_add.set_defaults(func=add)
 
-    # Parser for the ham command
-    parser_ham = subparsers.add_parser('ham')
-    parser_ham.set_defaults(func=ham)
+    # Parser for the rm command
+    parser_rm = subparsers.add_parser('rm')
+    parser_rm.set_defaults(func=rm)
 
-    # Parser for the eggs command
-    parser_eggs = subparsers.add_parser('eggs')
-    parser_eggs.set_defaults(func=eggs)
+    # Parser for the ls command
+    parser_ls = subparsers.add_parser('ls')
+    parser_ls.set_defaults(func=ls)
 
     args = parser.parse_args()
     return args
