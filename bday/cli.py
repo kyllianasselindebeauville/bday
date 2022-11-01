@@ -24,6 +24,9 @@ def ls(args):
 
 def today(args):
     print(f'{inspect.stack()[0][3]} <- {args}')
+    df = birthdays.get()
+    birthdays.list_(birthdays.today(df))
+    birthdays.save(df)
 
 
 def parse_args():
