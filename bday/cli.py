@@ -20,6 +20,9 @@ def rm(args):
 
 def ls(args):
     print(f'{inspect.stack()[0][3]} <- {args}')
+    df = birthdays.get()
+    birthdays.list_(df, how=args.order)
+    birthdays.save(df)
 
 
 def today(args):
