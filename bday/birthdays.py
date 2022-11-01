@@ -96,3 +96,7 @@ def list_(df: pd.DataFrame, how: str = 'chronologically') -> None:
     x.align['Countdown'] = 'r'
 
     print(x)
+
+
+def today(df: pd.DataFrame) -> pd.DataFrame:
+    return df[df['Birthday'] == pd.to_datetime(date.today())]
