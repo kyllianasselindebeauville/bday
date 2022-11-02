@@ -1,5 +1,4 @@
 import argparse
-import inspect
 
 from bday import birthdays
 
@@ -45,28 +44,24 @@ def parse_args():
 
 
 def add(args):
-    print(f'{inspect.stack()[0][3]} <- {args}')
     df = birthdays.get()
     df = birthdays.add(df, name=args.name, birthdate=args.date)
     birthdays.save(df)
 
 
 def rm(args):
-    print(f'{inspect.stack()[0][3]} <- {args}')
     df = birthdays.get()
     df = birthdays.remove(df, id=args.id)
     birthdays.save(df)
 
 
 def ls(args):
-    print(f'{inspect.stack()[0][3]} <- {args}')
     df = birthdays.get()
     birthdays.list_(df, how=args.order)
     birthdays.save(df)
 
 
 def today(args):
-    print(f'{inspect.stack()[0][3]} <- {args}')
     df = birthdays.get()
     birthdays.list_(birthdays.today(df))
     birthdays.save(df)
