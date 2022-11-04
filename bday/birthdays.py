@@ -20,6 +20,14 @@ def _get_filepath(file: str = None) -> str:
     return os.path.join(_get_default_directory(), file)
 
 
+def _age(birthdate: pd._libs.tslibs.timestamps.Timestamp) -> int:
+    today = date.today()
+    birthday_of_the_year = date(today.year, birthdate.month, birthdate.day)
+    age = today.year - birthdate.year - int(today < birthday_of_the_year)
+
+    return age
+
+
 def _next_birthday(birthday: pd._libs.tslibs.timestamps.Timestamp) -> date:
     today = date.today()
     birthday_of_the_year = date(today.year, birthday.month, birthday.day)
@@ -36,6 +44,7 @@ def get(file: str = None) -> pd.DataFrame:
     else:
         df = pd.DataFrame(columns=['Name', 'Birthdate'])
 
+    df['Age'] = df['Birthdate'].apply(_age).astype(int)
     df['Birthday'] = pd.to_datetime(df['Birthdate'].apply(_next_birthday))
     df['Countdown'] = df['Birthday'] - pd.to_datetime(date.today())
 
@@ -88,11 +97,12 @@ def list_(df: pd.DataFrame, how: str = 'chronologically') -> None:
     x.add_column('ID', df.index.to_list())
     x.add_column('Name', df['Name'].to_list())
     x.add_column('Birthdate', df['Birthdate'].to_list())
+    x.add_column('Age', df['Age'].to_list())
     x.add_column('Countdown', df['Countdown'].to_list())
 
+    x.align = 'l'
     x.align['ID'] = 'r'
-    x.align['Name'] = 'l'
-    x.align['Birthdate'] = 'l'
+    x.align['Age'] = 'r'
     x.align['Countdown'] = 'r'
 
     print(x)
