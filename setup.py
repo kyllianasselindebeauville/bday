@@ -3,6 +3,8 @@ from setuptools import setup
 setup(
     name='bday',
     description="Keep track of your loved ones' birthdays",
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
     author='Kyllian Asselin de Beauville',
     author_email='kyllianasselindebeauville@gmail.com',
     url='https://github.com/kyllianasselindebeauville/bday',
