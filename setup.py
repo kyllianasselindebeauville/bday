@@ -12,5 +12,10 @@ setup(
         'pandas>=1.5.1',
         'prettytable>=3.5.0',
     ],
+    entry_points={
+        'console_scripts': [
+            'bday = bday.__main__:main',
+        ],
+    },
     python_requires='>=3.7',
 )
