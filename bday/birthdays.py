@@ -45,8 +45,9 @@ def get(file: str = None) -> pd.DataFrame:
         df = pd.DataFrame(columns=['Name', 'Birthdate'])
 
     df['Age'] = df['Birthdate'].apply(_age).astype(int)
-    df['Birthday'] = pd.to_datetime(df['Birthdate'].apply(_next_birthday))
-    df['Countdown'] = df['Birthday'] - pd.to_datetime(date.today())
+    df['_Name'] = df['Name'].str.casefold()
+    df['_Birthday'] = pd.to_datetime(df['Birthdate'].apply(_next_birthday))
+    df['Countdown'] = df['_Birthday'] - pd.to_datetime(date.today())
 
     return df
 
@@ -79,11 +80,11 @@ def remove(df: pd.DataFrame, id: int) -> pd.DataFrame:
 
 def order(df: pd.DataFrame, how: str = 'chronologically') -> pd.DataFrame:
     if 'alphabetically'.startswith(how):
-        return df.sort_values(['Name', 'Countdown'])
+        df = df.sort_values(['_Name', 'Countdown'])
     elif 'chronologically'.startswith(how):
-        return df.sort_values(['Countdown', 'Name'])
-    else:
-        return df
+        df = df.sort_values(['Countdown', '_Name'])
+
+    return df
 
 
 def list_(df: pd.DataFrame, how: str = 'chronologically') -> None:
@@ -109,4 +110,4 @@ def list_(df: pd.DataFrame, how: str = 'chronologically') -> None:
 
 
 def today(df: pd.DataFrame) -> pd.DataFrame:
-    return df[df['Birthday'] == pd.to_datetime(date.today())]
+    return df[df['_Birthday'] == pd.to_datetime(date.today())]
