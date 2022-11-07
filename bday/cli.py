@@ -43,25 +43,25 @@ def parse_args():
     return args
 
 
-def add(args):
+def add(args: argparse.Namespace) -> None:
     df = birthdays.get()
     df = birthdays.add(df, name=args.name, birthdate=args.date)
     birthdays.save(df)
 
 
-def rm(args):
+def rm(args: argparse.Namespace) -> None:
     df = birthdays.get()
     df = birthdays.remove(df, id=args.id)
     birthdays.save(df)
 
 
-def ls(args):
+def ls(args: argparse.Namespace) -> None:
     df = birthdays.get()
     birthdays.list_(df, how=args.order)
     birthdays.save(df)
 
 
-def today(args):
+def today(args: argparse.Namespace) -> None:
     df = birthdays.get()
     birthdays.list_(birthdays.today(df))
     birthdays.save(df)
