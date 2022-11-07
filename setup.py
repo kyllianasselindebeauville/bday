@@ -1,7 +1,10 @@
 from setuptools import setup
 
+exec(open('bday/version.py').read())
+
 setup(
     name='bday',
+    version=__version__,
     description="Keep track of your loved ones' birthdays",
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',

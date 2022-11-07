@@ -1,6 +1,7 @@
 import argparse
 
 from bday import birthdays
+from bday.version import __version__
 
 
 def parse_args():
@@ -14,7 +15,12 @@ def parse_args():
     parser = argparse.ArgumentParser(prog='bday',
                                      description='Track your birthdays.')
 
+    parser.add_argument('-V', '--version', action='version',
+                        version=f'%(prog)s {__version__}')
+
     subparsers = parser.add_subparsers(title='commands')
+
+    parser.set_defaults(func=today)
 
     parser_add = subparsers.add_parser('add', help='add a birthday')
     parser_add.add_argument('name', type=str, help='name of the person')
@@ -36,8 +42,6 @@ def parse_args():
                            help='list chronologically',
                            dest='order')
     parser_ls.set_defaults(func=ls)
-
-    parser.set_defaults(func=today)
 
     args = parser.parse_args()
     return args
