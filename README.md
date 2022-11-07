@@ -77,6 +77,10 @@ bday
 bday ls
 ```
 
+> | ID | Name  | Birthdate  | Age | Countdown |
+> |---:|:------|:-----------|----:|----------:|
+> |  0 | epoch | 01/01/1970 |  52 |   55 days |
+
 ## Contributing
 
 Pull requests are welcome. Please open an issue first to discuss what you would like to change.
