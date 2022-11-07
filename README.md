@@ -65,7 +65,7 @@ bday rm 42
 
 > Replace `42` with the id of the birthday you want to remove.
 
-- List today's birthdays.
+- List today's birthdays *(default behavior)*.
 
 ```shell
 bday
