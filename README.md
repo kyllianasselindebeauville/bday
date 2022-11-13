@@ -14,22 +14,10 @@ python3 --version && python3 -m pip --version
 
 ## Installation
 
-- Clone this repository.
-
-```shell
-git clone https://github.com/kyllianasselindebeauville/bday.git
-```
-
-- Change directory into it.
-
-```shell
-cd bday
-```
-
 - Use the package manager `pip` to install `bday`.
 
 ```shell
-python3 -m pip install .
+python3 -m pip install git+https://github.com/kyllianasselindebeauville/bday.git
 ```
 
 ## Usage
